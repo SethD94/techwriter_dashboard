@@ -1,19 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head'
 import router from 'next/router'
-import { Container, Row, Col, Card, Button, CardText, CardTitle, CardHeader, CardBody, InputGroup, FormInput, FormGroup, Collapse, Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  InputGroupAddon,
-  InputGroupText,
-} from 'shards-react'
+import { Container, Row, Col, Card, Button, CardText, CardTitle, CardHeader, CardBody, InputGroup, FormInput, FormGroup, Collapse } from 'shards-react'
 
 export default function Home() {
 
@@ -42,25 +30,6 @@ export default function Home() {
         <title>Working Tile</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Navbar type="dark" theme="dark" expand="md" full="true">
-        <NavbarBrand href="#">Shards React</NavbarBrand>
-        <NavbarToggler  />
-        <Collapse navbar>
-          <Nav navbar className="ml-auto">
-            <Dropdown>
-              <DropdownToggle nav caret>
-                Dropdown
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem>Action</DropdownItem>
-                <DropdownItem>Another action</DropdownItem>
-                <DropdownItem>Something else here</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </Nav>
-        </Collapse>
-      </Navbar>
 
       <Row>
         <Col>
