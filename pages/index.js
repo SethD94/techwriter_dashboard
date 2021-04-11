@@ -37,7 +37,7 @@ export default function Home() {
 
 
   return (
-    <Container>
+    <div>
       <Head>
         <title>Working Tile</title>
         <link rel="icon" href="/favicon.ico" />
@@ -92,6 +92,6 @@ export default function Home() {
           </Card>
         </Col>
       </Row>
-    </Container>
+    </div>
   )
 }
