@@ -27,9 +27,10 @@ export default function Home() {
   const toggle = () => {
     setOpen((c) => !c);
   };
-
-  const[dropdown, setdropdown] = useState("Writer");
-  
+   const[dropdown, setdropdown] = useState("Writer");
+   const showUser = (e) =>{
+    setdropdown(e.target.value);
+  }
   return (
     <div>
       <Head>
@@ -42,16 +43,13 @@ export default function Home() {
           <Nav navbar className="ml-auto">
             <Dropdown open={open} toggle={toggle}>
               <DropdownToggle nav caret value={dropdown}>{dropdown}</DropdownToggle>
-                <DropdownMenu  onClick={(e)=>{
-                  const selectedUser = e.target.value;
-                  setdropdown(selectedUser)
-                }}>
-                  <DropdownItem value="All">All</DropdownItem>
-                  <DropdownItem value="Dennis">Dennis Thorpe</DropdownItem>
-                  <DropdownItem value="Guy">Guy Halpe</DropdownItem>
-                  <DropdownItem value="Janet">Janet Stevenson</DropdownItem>
-                  <DropdownItem value="Paul">Paul Erith</DropdownItem>
-                  <DropdownItem value="Seth">Seth Delpachitra</DropdownItem>
+                <DropdownMenu>
+                  <DropdownItem value="All" onClick={showUser}>All</DropdownItem>
+                  <DropdownItem value="Dennis" onClick={showUser}>Dennis Thorpe</DropdownItem>
+                  <DropdownItem value="Guy" onClick={showUser}>Guy Halpe</DropdownItem>
+                  <DropdownItem value="Janet" onClick={showUser}>Janet Stevenson</DropdownItem>
+                  <DropdownItem value="Paul" onClick={showUser}>Paul Erith</DropdownItem>
+                  <DropdownItem value="Seth" onClick={showUser}>Seth Delpachitra</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
           </Nav>
