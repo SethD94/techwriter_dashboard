@@ -21,23 +21,15 @@ export default function Home() {
 
   const handleRedirectToUser = () => {
     router.push('/users');
-  }
+  };
 
-  const [information, setInformation] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-  });
+  const [open, setOpen] = useState(false);
+  const toggle = () => {
+    setOpen((c) => !c);
+  };
 
-  const [isToggled, setIsToggled] = useState(false);
-
-  const handleInfoChange = (e) => {
-    const { target } = e;
-
-    setInformation({ ...information, [e.target.name]: e.target.value })
-  }
-
-
+  const[dropdown, setdropdown] = useState("Writer");
+  
   return (
     <div>
       <Head>
@@ -47,53 +39,23 @@ export default function Home() {
       <Navbar type="dark" theme="dark" expand="md">
         <NavbarBrand href="#">Shards React</NavbarBrand>
         <NavbarToggler/>
-
-        <Collapse navbar>
           <Nav navbar className="ml-auto">
-            <Dropdown
-            >
-              <DropdownToggle nav caret>
-                Dropdown
-              </DropdownToggle>
-              <DropdownMenu  >
-                <DropdownItem>Action</DropdownItem>
-                <DropdownItem>Another action</DropdownItem>
-                <DropdownItem>Something else here</DropdownItem>
-              </DropdownMenu>
+            <Dropdown open={open} toggle={toggle}>
+              <DropdownToggle nav caret value={dropdown}>{dropdown}</DropdownToggle>
+                <DropdownMenu  onClick={(e)=>{
+                  const selectedUser = e.target.value;
+                  setdropdown(selectedUser)
+                }}>
+                  <DropdownItem value="All">All</DropdownItem>
+                  <DropdownItem value="Dennis">Dennis Thorpe</DropdownItem>
+                  <DropdownItem value="Guy">Guy Halpe</DropdownItem>
+                  <DropdownItem value="Janet">Janet Stevenson</DropdownItem>
+                  <DropdownItem value="Paul">Paul Erith</DropdownItem>
+                  <DropdownItem value="Seth">Seth Delpachitra</DropdownItem>
+                </DropdownMenu>
             </Dropdown>
           </Nav>
-        </Collapse>
       </Navbar>
-      <Row>
-        <Col>
-          <Card>
-            <CardHeader>Home Page</CardHeader>
-            <CardBody>
-            <FormGroup>
-                <label>First Name</label>
-                <FormInput name={'firstName'} onChange={handleInfoChange} value={information.firstName} />
-              </FormGroup>
-
-              <FormGroup>
-                <label>Last Name</label>
-                <FormInput name={'lastName'} onChange={handleInfoChange} value={information.lastName} />
-              </FormGroup>
-
-              <FormGroup>
-                <label>Email</label>
-                <FormInput name={'email'} onChange={handleInfoChange} value={information.emails} />
-              </FormGroup>
-
-              <Button onClick={() => setIsToggled(!isToggled)}>Toggle</Button>
-              <Collapse open={isToggled}>
-                <p>{information.firstName}</p>
-                <p>{information.lastName}</p>
-                <p>{information.email}</p>
-              </Collapse>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
     </div>
   )
 }
