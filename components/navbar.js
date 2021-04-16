@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useState } from 'react';
 import {
-
+  Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
@@ -12,10 +12,8 @@ import {
 
 } from "shards-react";
 
-class NavigationBar extends Component {
-    
-    render() {
-
+    function NavigationBar() {
+        
         const [open, setOpen] = useState(false);
         const toggle = () => {
           setOpen((c) => !c);
@@ -45,6 +43,5 @@ class NavigationBar extends Component {
             </Navbar>
         );
     }
-}
 
-export default NavigationBar;
+    export default NavigationBar 
