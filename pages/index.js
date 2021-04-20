@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import router from 'next/router';
 import NavigationBar from 'C:\\Users\\seth.delpachitra\\Project 01\\techwriter_dashboard\\components\\navbar.js';
-
+import CardBodyExample from 'C:\\Users\\seth.delpachitra\\Project 01\\techwriter_dashboard\\components\\overviewCards.js';
 export default function Home() {
 
   
@@ -18,6 +18,7 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <NavigationBar />
+        <CardBodyExample />
         </div>
     )
 }
