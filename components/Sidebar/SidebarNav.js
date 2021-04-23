@@ -12,6 +12,9 @@ export default function SidebarNav() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar)
 
+  const [rightsidebar, setRightsidebar] = useState(false);
+  const showrightSidebar = () => setRightsidebar(!rightsidebar)
+
    return (
        <>
         <div className={sidebar ? 'sideBar Open'  : 'sideBar'}>
@@ -20,39 +23,41 @@ export default function SidebarNav() {
             </a>
             <div className="appTitle">Kiwiplan Techwriter Dashboard</div>
             <div className="dropdown">
-                    <a href="#" className="menuBars caret" >
+                    <a href="#" className="menuBars "  onClick={showrightSidebar} >
                         Writer
-                        <FaIcons.FaCaretDown />
+                        {rightsidebar ? <FaIcons.FaChevronRight  className='caret' /> : <FaIcons.FaChevronLeft  className='caret' />}
                     </a>
+                    <nav className={rightsidebar ? 'rsbar active' : 'rsbar'}>
                         <ul className="dropdown-content">
                             {dropdownData.map((item, index) => {
                                 return (
-                                    <li key={index} className={item.cName}>
-                                        <a href={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </a>
-                                    </li>
+                                <li key={index} className={item.cName}>
+                                    <a href={item.path}>
+                                        {item.icon}
+                                        <span>{item.title}</span>
+                                    </a>
+                                </li>
                                 )
                             })}
                         </ul>
-                    </div>
-            </div>
+                    </nav>
+                </div>
+        </div>
 
-        <nav className={sidebar ? 'navMenu active' : 'navMenu'}>
-            <ul className="navMenuItems">
-                {SidebarData.map((item, index) => {
-                    return (
-                        <li key={index} className={item.cName}>
-                            <a href={item.path}>
-                                {item.icon}
-                                <span>{item.title}</span>
-                            </a>
-                        </li>
-                    )
-                })}
-            </ul>
-        </nav>
+            <nav className={sidebar ? 'navMenu active' : 'navMenu'}>
+                <ul className="navMenuItems">
+                    {SidebarData.map((item, index) => {
+                        return (
+                            <li key={index} className={item.cName}>
+                                <a href={item.path}>
+                                    {item.icon}
+                                    <span>{item.title}</span>
+                                </a>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </nav>
 
         </>
     )
