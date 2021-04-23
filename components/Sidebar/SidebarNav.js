@@ -16,7 +16,7 @@ export default function SidebarNav() {
        <>
         <div className={sidebar ? 'sideBar Open'  : 'sideBar'}>
             <a href="#" className="menuBars">
-                <FaIcons.FaBars onClick={showSidebar}/>
+                {sidebar ? <AiIcons.AiOutlineClose onClick={showSidebar}/> : <FaIcons.FaBars onClick={showSidebar}/>}
             </a>
             <div className="appTitle">Kiwiplan Techwriter Dashboard</div>
             <div className="dropdown">
@@ -41,11 +41,6 @@ export default function SidebarNav() {
 
         <nav className={sidebar ? 'navMenu active' : 'navMenu'}>
             <ul className="navMenuItems">
-                <li className="navBarToggle">
-                    <a href="#" className="menuBars">
-                        <AiIcons.AiOutlineClose onClick={showSidebar}/>
-                    </a>
-                </li>
                 {SidebarData.map((item, index) => {
                     return (
                         <li key={index} className={item.cName}>
