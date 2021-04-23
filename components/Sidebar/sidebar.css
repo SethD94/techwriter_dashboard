@@ -123,11 +123,13 @@
       background-color: #1a83ff;
       transition: 200ms;
       text-decoration: none;
+      border-radius: 4px;
    
     }
 
     .dropdown-content a:active {
         background-color: #1a83ff;
+        border-radius: 4px;
         transition: 800ms;
       }
   
