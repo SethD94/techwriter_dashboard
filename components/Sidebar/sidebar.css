@@ -10,15 +10,18 @@
     display: flex;
     justify-content: start;
     align-items: center;
-
 }
 
+.sideBar.Open{
+    margin-left: 250px;
+    transition: 700ms ease;
+}
+   
 .menuBars {
     margin-left: 1.5rem;
     font-size: 24px;
     padding-bottom: 5px;
- 
-
+    color: white;
  
 }
 
@@ -37,8 +40,7 @@
 
 .navMenu.active{
     left: 0;
-    transition: 700ms;
-
+    transition: 0s ease;
 }
 
 .nav-text {
@@ -48,7 +50,6 @@
     padding: 8px 0px 8px 16px;
     list-style: none;
     height: 60px;
-
 }
 
 .nav-text a{
@@ -70,7 +71,6 @@
 .navMenuItems{
     width: 100%;
     
-    
 }
 
 .navBarToggle{
@@ -84,4 +84,61 @@
 }
   span {
       margin-left: 16px; 
+}
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: 15px;
   }
+  
+  .dropdown-content {
+    display: none;
+    top: 40px;
+    right: -15px;
+    position: absolute;
+    background-color: #060b26;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    list-style: none;
+  }
+
+
+  
+  .dropdown-content a {
+    color: white;
+    padding: 12px 0px;
+
+    display: block;
+  }
+
+  .caret:hover {
+      text-decoration: none;
+      color: white;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #1a83ff;
+      transition: 200ms;
+      text-decoration: none;
+   
+    }
+
+    .dropdown-content a:active {
+        background-color: #1a83ff;
+        transition: 800ms;
+      }
+  
+  .dropdown:hover .dropdown-content{
+    display: block;
+ 
+
+ 
+ 
+  }
+
+
+  
+
