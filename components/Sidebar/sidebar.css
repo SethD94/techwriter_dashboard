@@ -1,19 +1,19 @@
 .appTitle{
     margin-left: 1.5rem;
     color: white; 
-    font-size: 24px;  
+    font-size: 20px;  
 }
 
 .sideBar{
     background-color: #060b26;
-    height: 80px;
+    height: 64px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }  
 .menuBars {
     margin-left: 1.5rem;
-    font-size: 24px;
+    font-size: 20px;
     padding-bottom: 5px;
     color: white;
  
@@ -31,7 +31,7 @@
     position: fixed;
     left: -100%; 
     transition: 850ms;
-    top: 80px;
+    top: 64px;
     list-style: none;
 }
 
