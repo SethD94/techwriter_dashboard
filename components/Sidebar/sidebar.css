@@ -43,8 +43,7 @@
 .nav-text {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    padding: 8px 0px 8px 16px;
+    align-items: left;
     list-style: none;
     height: 60px;
 }
@@ -70,15 +69,6 @@
     
 }
 
-.navBarToggle{
-    background-color: #060b26;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-}
   span {
       margin-left: 16px; 
 }
