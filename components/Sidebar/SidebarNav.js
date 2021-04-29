@@ -19,11 +19,11 @@ export default function SidebarNav() {
        <>
         <div className={sidebar ? 'sideBar Open'  : 'sideBar'}>
             <a href="#" className="menuBars">
-                {sidebar ? <AiIcons.AiOutlineClose onClick={showSidebar}/> : <FaIcons.FaBars onClick={showSidebar}/>}
+                {sidebar ? <AiIcons.AiOutlineClose className="title" onClick={showSidebar}/> : <FaIcons.FaBars onClick={showSidebar}/>}
             </a>
-            <div className="appTitle">Kiwiplan Techwriter Dashboard</div>
+            <div className="Heading">Kiwiplan Techwriter Dashboard</div>
             <div className="dropdown">
-                    <a href="#" className="menuBars "  onClick={showrightSidebar} >
+                    <a href="#" className="menuBars"  onClick={showrightSidebar} >
                         Writer
                         {rightsidebar ? <FaIcons.FaChevronRight  className='caret' /> : <FaIcons.FaChevronLeft  className='caret' />}
                     </a>
