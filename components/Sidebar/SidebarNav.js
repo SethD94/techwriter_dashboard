@@ -17,7 +17,7 @@ export default function SidebarNav() {
 
    return (
        <>
-        <div className={sidebar ? 'sideBar Open'  : 'sideBar'}>
+        <div className='sideBar'>
             <a href="#" className="menuBars">
                 {sidebar ? <AiIcons.AiOutlineClose onClick={showSidebar}/> : <FaIcons.FaBars onClick={showSidebar}/>}
             </a>
