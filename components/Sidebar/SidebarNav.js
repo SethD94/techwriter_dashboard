@@ -25,7 +25,7 @@ export default function SidebarNav() {
             <div className="dropdown">
                     <a href="#" className="menuBars"  onClick={showrightSidebar} >
                         Writer
-                        {rightsidebar ? <FaIcons.FaChevronRight  className='caret' /> : <FaIcons.FaChevronLeft  className='caret' />}
+                        {rightsidebar ? <AiIcons.AiOutlineClose  className='caret' /> : <FaIcons.FaChevronDown  className='caret' />}
                     </a>
                     <nav className={rightsidebar ? 'rsbar active' : 'rsbar'}>
                         <ul className="dropdown-content">
