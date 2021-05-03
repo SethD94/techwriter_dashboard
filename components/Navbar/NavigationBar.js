@@ -1,35 +1,34 @@
 import React, {useState} from 'react';
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import Link from 'next/link';
-import { SidebarData } from './SidebarData';
-import { dropdownData } from './dropdownData';
-import { IconContext } from 'react-icons';
+import { MenuDrawerData } from './MenuDrawerData';
+import { UserDropdownData } from './UserData';
 
 
-export default function SidebarNav() {
 
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar)
+export default function NavigationBar() {
 
-  const [rightsidebar, setRightsidebar] = useState(false);
-  const showrightSidebar = () => setRightsidebar(!rightsidebar)
+  const [ menuDrawer, setMenuBar] = useState(false);
+  const showMenubar = () => setMenuBar(!menuDrawer)
+
+  const [userDropdown, setUserDropdown] = useState(false);
+  const showuserDropdown = () => setUserDropdown(!userDropdown)
 
    return (
        <>
         <div className='sideBar'>
             <a href="#" className="menuBars">
-                {sidebar ? <AiIcons.AiOutlineClose onClick={showSidebar}/> : <FaIcons.FaBars onClick={showSidebar}/>}
+                {menuDrawer ? <AiIcons.AiOutlineClose onClick={showMenubar}/> : <FaIcons.FaBars onClick={showMenubar}/>}
             </a>
             <div className="Heading">Kiwiplan Techwriter Dashboard</div>
             <div className="dropdown">
-                    <a href="#" className="menuBars"  onClick={showrightSidebar} >
+                    <a href="#" className="menuBars"  onClick={showuserDropdown} >
                         Writer
-                        {rightsidebar ? <AiIcons.AiOutlineClose  className='caret' /> : <FaIcons.FaChevronDown  className='caret' />}
+                        {userDropdown ? <AiIcons.AiOutlineClose  className='caret' /> : <FaIcons.FaChevronDown  className='caret' />}
                     </a>
-                    <nav className={rightsidebar ? 'rsbar active' : 'rsbar'}>
+                    <nav className={userDropdown ? 'rsbar active' : 'rsbar'}>
                         <ul className="dropdown-content">
-                            {dropdownData.map((item, index) => {
+                            {UserDropdownData.map((item, index) => {
                                 return (
                                 <li key={index} className={item.cName}>
                                     <a href={item.path}>
@@ -44,9 +43,9 @@ export default function SidebarNav() {
                 </div>
         </div>
 
-            <nav className={sidebar ? 'navMenu active' : 'navMenu'}>
+            <nav className={ menuDrawer ? 'navMenu active' : 'navMenu'}>
                 <ul className="navMenuItems">
-                    {SidebarData.map((item, index) => {
+                    {MenuDrawerData.map((item, index) => {
                         return (
                             <li key={index} className={item.cName}>
                                 <a href={item.path}>

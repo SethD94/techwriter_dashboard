@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Head from 'next/head';
 import router from 'next/router';
-import SidebarNav from '../components/Sidebar/SidebarNav.js';
+import SidebarNav from '../components/Navbar/NavigationBar.js';
 
 export default function Home() {
   

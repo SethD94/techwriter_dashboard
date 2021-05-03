@@ -1,4 +1,4 @@
-import '../components/Sidebar/sidebar.css'
+import '../components/Navbar/Drawer.css'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
