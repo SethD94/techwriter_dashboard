@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { MenuDrawerData } from './MenuDrawerData';
-import { UserDropdownData } from './UserData';
-
+import UserDropdown from '../UserDropdown/UserDropdown';
+import MenuBar from '../MenuBar/Menubar';
 
 
 export default function NavigationBar() {
@@ -20,44 +19,20 @@ export default function NavigationBar() {
             <a href="#" className="menuBars">
                 {menuDrawer ? <AiIcons.AiOutlineClose onClick={showMenubar}/> : <FaIcons.FaBars onClick={showMenubar}/>}
             </a>
+            <nav className={ menuDrawer ? 'navMenu active' : 'navMenu'}>
+                <MenuBar />
+            </nav> 
             <div className="Heading">Kiwiplan Techwriter Dashboard</div>
-            <div className="dropdown">
+                <div className="dropdown">
                     <a href="#" className="menuBars"  onClick={showuserDropdown} >
                         Writer
                         {userDropdown ? <AiIcons.AiOutlineClose  className='caret' /> : <FaIcons.FaChevronDown  className='caret' />}
                     </a>
                     <nav className={userDropdown ? 'rsbar active' : 'rsbar'}>
-                        <ul className="dropdown-content">
-                            {UserDropdownData.map((item, index) => {
-                                return (
-                                <li key={index} className={item.cName}>
-                                    <a href={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </a>
-                                </li>
-                                )
-                            })}
-                        </ul>
+                        <UserDropdown />
                     </nav>
                 </div>
-        </div>
-
-            <nav className={ menuDrawer ? 'navMenu active' : 'navMenu'}>
-                <ul className="navMenuItems">
-                    {MenuDrawerData.map((item, index) => {
-                        return (
-                            <li key={index} className={item.cName}>
-                                <a href={item.path}>
-                                    {item.icon}
-                                    <span>{item.title}</span>
-                                </a>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </nav>
-
+            </div>
         </>
     )
 }

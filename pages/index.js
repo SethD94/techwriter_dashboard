@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Head from 'next/head';
 import router from 'next/router';
-import SidebarNav from '../components/Navbar/NavigationBar.js';
+import NavigationBar from '../components/Navbar/NavigationBar.js';
 
 export default function Home() {
   
@@ -16,7 +16,7 @@ export default function Home() {
           <title>Working Tile</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-          <SidebarNav />
+          <NavigationBar />
         </div>
     )
 }
