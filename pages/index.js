@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import Head from 'next/head';
 import router from 'next/router';
 import NavigationBar from '../components/Navbar/NavigationBar.js';
