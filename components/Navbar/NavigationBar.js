@@ -7,6 +7,12 @@ import MenuBar from '../MenuBar/Menubar';
 
 export default function NavigationBar() {
 
+    NavigationBar.getInitialProps = async (ctx) => {
+        const res = await fetch('http://localhost:5000/techwriters')
+        const json = await res.json()
+        console.log("hello");
+      }
+
   const [ menuDrawer, setMenuBar] = useState(false);
   const showMenubar = () => setMenuBar(!menuDrawer)
 
