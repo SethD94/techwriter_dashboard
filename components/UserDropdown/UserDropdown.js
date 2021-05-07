@@ -3,6 +3,11 @@ import { UserData } from './UserData.js'
 
 export default function UserDropdown() {
 
+    Page.getServerSideProps = async (ctx) => {
+        const res = await fetch('http://localhost:5000/techwriters')
+        const json = await res.json()
+      }
+
    return (
        <>
         <ul className="dropdown-content">
