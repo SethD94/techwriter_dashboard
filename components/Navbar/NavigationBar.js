@@ -3,7 +3,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import UserDropdown from '../UserDropdown/UserDropdown';
 import MenuBar from '../MenuBar/Menubar';
-
+import StargazerCount from '../Navbar/TestAPI';
 
 export default function NavigationBar() {
 
@@ -28,7 +28,7 @@ export default function NavigationBar() {
             <nav className={ menuDrawer ? 'navMenu active' : 'navMenu'}>
                 <MenuBar />
             </nav> 
-            <div className="Heading">Kiwiplan Techwriter Dashboard</div>
+            <div className="Heading">Kiwiplan Techwriter Dashboard <StargazerCount /></div>
                 <div className="dropdown">
                     <a href="#" className="menuBars"  onClick={showuserDropdown} >
                         Writer
