@@ -7,12 +7,6 @@ import StargazerCount from '../Navbar/TestAPI';
 
 export default function NavigationBar() {
 
-    NavigationBar.getInitialProps = async (ctx) => {
-        const res = await fetch('http://localhost:5000/techwriters')
-        const json = await res.json()
-        console.log("hello");
-      }
-
   const [ menuDrawer, setMenuBar] = useState(false);
   const showMenubar = () => setMenuBar(!menuDrawer)
 
@@ -28,7 +22,7 @@ export default function NavigationBar() {
             <nav className={ menuDrawer ? 'navMenu active' : 'navMenu'}>
                 <MenuBar />
             </nav> 
-            <div className="Heading">Kiwiplan Techwriter Dashboard <StargazerCount /></div>
+            <div className="Heading">Kiwiplan Techwriter Dashboard </div>
                 <div className="dropdown">
                     <a href="#" className="menuBars"  onClick={showuserDropdown} >
                         Writer
