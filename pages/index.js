@@ -5,7 +5,7 @@ import NavigationBar from '../components/Navbar/NavigationBar.js';
 import StargazerCount from '../components/Navbar/TestAPI'
 import fetch from 'isomorphic-unfetch';
 
-export default function Home({ stars }) {
+export default function Home({ userdata }) {
   
   const handleRedirectToUser = () => {
     router.push('/users');
@@ -18,15 +18,14 @@ export default function Home({ stars }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
           <NavigationBar />
-          <div>
-              Next.js Stars: { stars }
-          </div>
-        </div>
+          <div>{userdata}</div>
+          
+      </div>
     )
 }
 
 Home.getInitialProps = async () => {
-  const res = await fetch ('https://api.github.com/repos/zeit/next.js')
+  const res = await fetch ('http://localhost:5000/techwriters')
   const json = await res.json()
-  return { stars: json.stargazers_count, }
+  return { userdata: json, }
 }
