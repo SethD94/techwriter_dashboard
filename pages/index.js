@@ -17,9 +17,7 @@ export default function Home({ userdata }) {
           <title>Working Tile</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-          <NavigationBar />
-          <div>{userdata}</div>
-          
+          <NavigationBar />         
       </div>
     )
 }
