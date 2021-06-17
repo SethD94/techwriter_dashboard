@@ -3,7 +3,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import UserDropdown from '../UserDropdown/UserDropdown';
 import MenuBar from '../MenuBar/Menubar';
-import StargazerCount from '../Navbar/TestAPI';
+
 
 export default function NavigationBar() {
 

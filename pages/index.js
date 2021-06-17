@@ -6,10 +6,6 @@ import StargazerCount from '../components/Navbar/TestAPI'
 import fetch from 'isomorphic-unfetch';
 
 export default function Home({ userdata }) {
-  
-  const handleRedirectToUser = () => {
-    router.push('/users');
-  };
 
    return (
       <div>
@@ -25,5 +21,8 @@ export default function Home({ userdata }) {
 Home.getInitialProps = async () => {
   const res = await fetch ('http://localhost:5000/techwriters')
   const json = await res.json()
-  return { userdata: json, }
+  for (let i = 0; i < json.length; i++) { 
+    console.log(json[i].first_name);
+  }
+  return { userdata: json }
 }
