@@ -5,7 +5,9 @@ import UserDropdown from '../UserDropdown/UserDropdown';
 import MenuBar from '../MenuBar/Menubar';
 
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
+  
+  const [ dropdownData, setdropdownData ] = useState(props.Users)  
 
   const [ menuDrawer, setMenuBar] = useState(false);
   const showMenubar = () => setMenuBar(!menuDrawer)
@@ -29,7 +31,7 @@ export default function NavigationBar() {
                         {userDropdown ? <AiIcons.AiOutlineClose  className='caret' /> : <FaIcons.FaChevronDown  className='caret' />}
                     </a>
                     <nav className={userDropdown ? 'rsbar active' : 'rsbar'}>
-                        <UserDropdown />
+                        <UserDropdown data={dropdownData} />
                     </nav>
                 </div>
             </div>

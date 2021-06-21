@@ -13,7 +13,7 @@ export default function Home({ userdata }) {
           <title>Working Tile</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-          <NavigationBar />         
+          <NavigationBar Users= {userdata} />         
       </div>
     )
 }
@@ -24,5 +24,5 @@ Home.getInitialProps = async () => {
   for (let i = 0; i < json.length; i++) { 
     console.log(json[i].first_name);
   }
-  return { userdata: json }
+  return {userdata: json}
 }

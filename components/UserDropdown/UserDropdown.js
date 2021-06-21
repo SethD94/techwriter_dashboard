@@ -1,22 +1,23 @@
-import React from 'react';
-import { UserData } from './UserData.js'
+import React, {useState} from 'react';
+import Image from 'next/image';
 
-export default function UserDropdown() {
+export default function UserDropdown(props) {
+
+    const [userData, setUserData] = useState(props.data)
 
    return (
        <>
         <ul className="dropdown-content">
-            {UserData.map((item, index) => {
+            {userData.map((item, index) => {
                 return (
                   
-                <li key={index} className={item.cName}>
-                    <a href={item.path}>
-                        {item.icon}
-                        <span>{item.title}</span>
-                    </a>
+                <li key={index} >
+                    <Image src={item.img} alt={item.firstname} width="50px" height="50px" />
+                        <span>{item.first_name}</span>
+                        <span>{item.last_name}</span>
+                        <span>{item.img}</span>
                     
                 </li>
-                
                 )
             })}
         </ul>
