@@ -11,12 +11,8 @@ export default function UserDropdown(props) {
             {userData.map((item, index) => {
                 return (
                   
-                <li key={index} >
-                    <Image src={item.img} alt={item.firstname} width="50px" height="50px" />
-                        <span>{item.first_name}</span>
-                        <span>{item.last_name}</span>
-                        <span>{item.img}</span>
-                    
+                <li key={index} className="dropdown-items">
+                    {item.first_name}{" "}{item.last_name}
                 </li>
                 )
             })}
