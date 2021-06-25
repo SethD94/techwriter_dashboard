@@ -1,8 +1,8 @@
 import React from 'react';
+import * as mysql from 'mysql';
 import Head from 'next/head';
-import router from 'next/router';
 import NavigationBar from '../components/Navbar/NavigationBar.js';
-import StargazerCount from '../components/Navbar/TestAPI'
+import ReportCard from '../components/ReportCards/ReportCards.js';
 import fetch from 'isomorphic-unfetch';
 
 export default function Home({ userdata }) {
@@ -13,7 +13,8 @@ export default function Home({ userdata }) {
           <title>Working Tile</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-          <NavigationBar Users= {userdata} />         
+          <NavigationBar Users= {userdata} />
+          <ReportCard />         
       </div>
     )
 }
