@@ -38,6 +38,8 @@ export async function getServerSideProps() {
     }
   })
 
+  const users = await sequelize.query("SELECT kp.firstname, GROUP_CONCAT(te.name ORDER BY te.name SEPARATOR ', ') AS 'Teams' FROM nzteam.techwriterassignment tw INNER JOIN kall.person kp ON kp.id=tw.techwriterID INNER JOIN nzteam.teams te ON te.id = tw.teamId WHERE te.isActive GROUP BY kp.id ORDER BY kp.firstname;");
+  console.log(users);
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
