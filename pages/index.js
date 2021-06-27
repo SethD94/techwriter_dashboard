@@ -1,5 +1,4 @@
 import React from 'react';
-import * as mysql from 'mysql';
 import Head from 'next/head';
 import NavigationBar from '../components/Navbar/NavigationBar.js';
 import ReportCard from '../components/ReportCards/ReportCards.js';
@@ -19,11 +18,38 @@ export default function Home({ userdata }) {
     )
 }
 
-Home.getInitialProps = async () => {
+/*Home.getInitialProps = async () => {
   const res = await fetch ('http://localhost:5000/techwriters')
   const json = await res.json()
   for (let i = 0; i < json.length; i++) { 
     console.log(json[i].first_name);
   }
   return {userdata: json}
+}*/
+
+export async function getServerSideProps() {
+
+  const { Sequelize } = require('sequelize');
+  const sequelize = new Sequelize('rekall', 'mike.treadgold', 'mtnz99', {
+    dialect: 'mysql',
+    dialectOptions: {
+      // Your mysql2 options here
+    }
+  })
+
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+
+  // Fetch data from external API
+  const res = await fetch ('http://localhost:5000/techwriters')
+  const userdata = await res.json()
+  for (let i = 0; i < userdata.length; i++) { 
+    console.log(userdata[i].first_name);
+  }
+  // Pass data to the page via props
+  return { props: { userdata } }
 }
