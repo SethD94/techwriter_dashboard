@@ -29,17 +29,22 @@ export default function Home({ userdata }) {
 
 export async function getServerSideProps() {
 
+
   const { Sequelize } = require('sequelize');
+  const fs  = require('fs');
   const sequelize = new Sequelize('nzteam', 'mike.treadgold', 'mtnz99', {
     dialect: 'mysql',
     dialectOptions: {
-      host: 'rekall'
+      host: 'rekall',
+      multipleStatements: true
       // Your mysql2 options here
     }
   })
-
-  const users = await sequelize.query("SELECT kp.firstname, GROUP_CONCAT(te.name ORDER BY te.name SEPARATOR ', ') AS 'Teams' FROM nzteam.techwriterassignment tw INNER JOIN kall.person kp ON kp.id=tw.techwriterID INNER JOIN nzteam.teams te ON te.id = tw.teamId WHERE te.isActive GROUP BY kp.id ORDER BY kp.firstname;");
-  console.log(users);
+   let sql_script = fs.readFileSync('sql_scripts\\WorkDueSoon.sql', 'utf8');
+   const users = await sequelize.query(sql_script);
+   console.log(users);
+ 
+  
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
