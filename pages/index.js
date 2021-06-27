@@ -30,9 +30,10 @@ export default function Home({ userdata }) {
 export async function getServerSideProps() {
 
   const { Sequelize } = require('sequelize');
-  const sequelize = new Sequelize('rekall', 'mike.treadgold', 'mtnz99', {
+  const sequelize = new Sequelize('nzteam', 'mike.treadgold', 'mtnz99', {
     dialect: 'mysql',
     dialectOptions: {
+      host: 'rekall'
       // Your mysql2 options here
     }
   })
