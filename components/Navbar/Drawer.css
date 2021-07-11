@@ -20,7 +20,7 @@
 .sideBar{
     background-color: #212121;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 0px;
-    height: 80px;
+    height: 64px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -58,7 +58,7 @@
     position: fixed;
     left: -100%; 
     transition: 850ms;
-    top: 80px;
+    top: 64px;
     list-style: none;
 }
 
@@ -139,7 +139,7 @@
     position: fixed;
     right: -100%; 
     transition: 850ms;
-    top: 80px;
+    top: 64px;
     list-style: none;
 }
 
