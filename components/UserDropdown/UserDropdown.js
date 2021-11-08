@@ -9,7 +9,6 @@ export default function UserDropdown(props) {
         console.log(e.currentTarget.dataset.user);
     }
 
-   console.log(userData[0]);
    return (
        <>
         <ul className="dropdown-content">

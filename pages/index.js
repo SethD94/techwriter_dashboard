@@ -58,9 +58,9 @@ export async function getServerSideProps() {
   // Fetch data from external API
   //const res = await fetch ('http://localhost:5000/techwriters')
   //const userdata = await res.json()
-  for (let i = 0; i < userdata.length; i++) { 
+  //for (let i = 0; i < userdata.length; i++) { 
     //console.log(userdata[i].first_name);
-  }
+  //}
   // Pass data to the page via props
   return { props: { userdata } }
 }
