@@ -29,39 +29,9 @@ export default function Home({ userdata }) {
 }*/
 
 export async function getServerSideProps() {
+  const res = await fetch ('http://localhost:5000/techwriters')
+  const userdata = await res.json()
 
-
-  const { Sequelize } = require('sequelize');
-  const fs  = require('fs');
-  const sequelize = new Sequelize('nzteam', 'mike.treadgold', 'mtnz99', {
-    dialect: 'mysql',
-    dialectOptions: {
-      host: 'rekall',
-      multipleStatements: true
-      // Your mysql2 options here
-    }
-  })
-   
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-
-  let sql_script = fs.readFileSync('sql_scripts\\GetWriters.sql', 'utf8');
-  const users = await sequelize.query(sql_script);
-  const userdata = JSON.stringify(users);
-  //for (let i = 0; i < users[0].length; i++) { 
-   // console.log(users[0][i].firstname );
-  //}
-  // Fetch data from external API
-  //const res = await fetch ('http://localhost:5000/techwriters')
-  //const userdata = await res.json()
-  //for (let i = 0; i < userdata.length; i++) { 
-    //console.log(userdata[i].first_name);
-  //}
-  // Pass data to the page via props
   return { props: { userdata } }
 }
 

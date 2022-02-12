@@ -18,12 +18,12 @@ export default function NavigationBar(props) {
    return (
        <>
         <div className='sideBar'>
-            <a href="#" className="menuBars">
+            {/* <a href="#" className="menuBars">
                 {menuDrawer ? <AiIcons.AiOutlineClose onClick={showMenubar}/> : <FaIcons.FaBars onClick={showMenubar}/>}
             </a>
             <nav className={ menuDrawer ? 'navMenu active' : 'navMenu'}>
                 <MenuBar />
-            </nav> 
+            </nav>  */}
             <div className="Heading">Kiwiplan Techwriter Dashboard </div>
                 <div className="dropdown">
                     <a href="#" className="menuBars"  onClick={showuserDropdown} >

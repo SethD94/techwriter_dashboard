@@ -14,7 +14,7 @@ export default function UserDropdown(props) {
         <ul className="dropdown-content">
             {userData[0].map((item, index) => {
                 return (
-                    <li key={index} className="dropdown-items" data-user={item.firstname} onClick={showDataCards}>
+                    <li key={index} className="dropdown-items" data-user={item.ID} onClick={showDataCards}>
                         {item.fullname}
                     </li>
                 )
