@@ -1,4 +1,16 @@
 SELECT sourcedata.SCM, sourcedata.KALL AS 'KALL(s)' ,
+
+CASE
+WHEN GROUP_CONCAT(DISTINCT t.assignee) IS NOT NULL
+THEN GROUP_CONCAT(DISTINCT t.assignee SEPARATOR ', ')
+WHEN sourcedata.Team IS NOT NULL
+THEN 
+(SELECT techWriterId FROM nzteam.techwriterassignment 
+WHERE teamId=(SELECT id FROM nzteam.teams WHERE name=sourcedata.Team))
+ELSE
+NULL
+END AS writer_id,
+
 CASE 
 
 WHEN GROUP_CONCAT(DISTINCT kp.firstname SEPARATOR ', ') IS NOT NULL

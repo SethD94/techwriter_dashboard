@@ -1,15 +1,31 @@
-SELECT revisioninfo.SCM, revisioninfo.KALL, 	
+SELECT revisioninfo.SCM, revisioninfo.KALL, 
+CASE
+WHEN GROUP_CONCAT(DISTINCT t.assignee) IS NOT NULL
+THEN GROUP_CONCAT(DISTINCT t.assignee SEPARATOR ', ')
+WHEN revisioninfo.Team IS NOT NULL
+THEN 
+(SELECT techWriterId FROM nzteam.techwriterassignment 
+WHERE teamId=(SELECT id FROM nzteam.teams WHERE name=revisioninfo.Team))
+ELSE
+NULL
+END AS writer_id,
+
 CASE 
+
 WHEN GROUP_CONCAT(DISTINCT kp.firstname SEPARATOR ', ') IS NOT NULL
 THEN GROUP_CONCAT(DISTINCT kp.firstname SEPARATOR ', ')
 
 WHEN revisioninfo.Team IS NOT NULL 
 THEN 
 (SELECT kall.person.firstname FROM nzteam.techwriterassignment 
+
 INNER JOIN kall.person ON techWriterId = kall.person.id
+
 WHERE teamId=(SELECT id FROM nzteam.teams WHERE name=revisioninfo.Team))
+
 ELSE
 NULL
+
 END
 
  AS 'Writer',
@@ -21,6 +37,7 @@ revisioninfo.TW_Status,
 revisioninfo.Dev_Status, 
 revisioninfo.QA_Status,
 CONVERT(revisioninfo.completeddate,date) AS 'SC Closed', 
+revisioninfo.Due_Date,
 revisioninfo.Requestor,
 revisioninfo.Revision
 
@@ -55,7 +72,7 @@ IFNULL(GROUP_CONCAT(DISTINCT
 IF(t.documentationtasktype IN 
 ('CUSTOMER_RELEASE_NOTICE'),
 UPPER(t.status)
-, NULL) SEPARATOR ', ') ,
+, NULL) SEPARATOR ', ' ) ,
 
 CASE sc.includeincustomerreleasenotice
 WHEN 'YES' THEN 'REQUIRED (NO CRN TASK)'
@@ -91,7 +108,7 @@ sc.Title AS 'Title', sc.type AS 'Type',
 da.developmentstatus AS 'Dev_Status',
 da.qastatus AS 'QA_Status',
 
-
+MIN(CAST(r.targetdate AS Date)) AS 'Due_Date',
 
 GROUP_CONCAT(DISTINCT CONCAT(rg.name, '_', r.major, IF(ISNULL(r.minor), '', CONCAT('_', r.minor)), IF(ISNULL(r.patch), '', CONCAT('_', r.patch)) ) SEPARATOR '<br />') AS 'Revision' ,
 
@@ -150,13 +167,14 @@ WHERE sc.id IN(SELECT DISTINCT softwarechangeid from scm.targetedrevisions tr
 WHERE tr.revisionid IN (
 SELECT revision FROM scm.dashboardentry 
 WHERE 
-(archived>'2019-11-07')
+(STATUS = 'ACTIVE'
+OR archived>'2019-01-01')
 
 ))
 
 
 
--- AND da.developmentstatus  IN ('COMPLETED', 'PENDING_COMMIT')
+AND da.developmentstatus  IN ('COMPLETED', 'PENDING_COMMIT')
 
 
 AND (
@@ -188,15 +206,19 @@ GROUP BY sc.id
 
 LEFT JOIN scm.task t ON
 t.softwarechangeid=revisioninfo.id
-AND t.status NOT IN ('COMPLETED', 'CANCELLED', 'MOVED') AND t.documentationtasktype IN ('CUSTOMER_RELEASE_NOTICE','TECHNICAL_WRITING')
+AND t.status NOT IN ('COMPLETED', 'CANCELLED') AND t.documentationtasktype IN ('CUSTOMER_RELEASE_NOTICE','TECHNICAL_WRITING')
 
 LEFT JOIN kall.person kp ON kp.id=t.assignee
 
-WHERE revisioninfo.Released = 'Yes'
+WHERE revisioninfo.Released = 'No'
 
 GROUP BY SCM
 
 ORDER BY Writer,
+
+Due_Date IS NOT NULL,
+
+Due_Date,
 
 CASE CRN_Status
 WHEN  'COMPLETED' THEN 0
@@ -239,7 +261,5 @@ WHEN  'AWAITING_DEV' THEN 4
 END
 
 ,
-
-
 team,
 t.documentationtasktype

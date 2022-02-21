@@ -1,4 +1,5 @@
 let express = require('express');
+const cors = require('cors');
 const { Sequelize } = require('sequelize');
 const fs  = require('fs');
 const { report } = require('process');
@@ -16,7 +17,11 @@ const init = async () => {
             // Your mysql2 options here
         }
         })
-    
+    corsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200
+        };
+    app.use(cors(corsOptions));
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
@@ -45,9 +50,12 @@ const init = async () => {
     */
     app.get('/techwriter/:ID', async (req,res) => {
         const { params } = req;
-        const backlog_script = fs.readFileSync('../sql_scripts/BacklogReport.sql', 'utf8');
-        const work_due_soon_script = fs.readFileSync('../sql_scripts/WorkDueSoon.sql', 'utf8');
-        const ready_report_script = fs.readFileSync('../sql_scripts/ReadyReport.sql', 'utf8');
+        function filterbyID(report){
+            return report.writer_id === params.ID;
+          }
+        const backlog_script = fs.readFileSync('../sql_scripts/BacklogTasks.sql', 'utf8');
+        const work_due_soon_script = fs.readFileSync('../sql_scripts/WorkDueSoonTasks.sql', 'utf8');
+        const ready_report_script = fs.readFileSync('../sql_scripts/ReadyTasks.sql', 'utf8');
         const work_on_the_horizon_script = fs.readFileSync('../sql_scripts/WorkOnTheHorizon.sql', 'utf8');
         const backlog_query_response = await sequelize.query(backlog_script);
         const work_due_soon_query_response = await sequelize.query(work_due_soon_script);
@@ -57,9 +65,6 @@ const init = async () => {
         const total_work_due_soon_tasks = work_due_soon_query_response[0].filter(filterbyID).length;
         const total_ready_report_tasks = ready_report_query_response[0].filter(filterbyID).length;
         const total_work_on_the_horizon = work_on_the_horizon_query_response[0].filter(filterbyID).length;
-        function filterbyID(report){
-          return report.writer_id === params.ID;
-        }
         const output = {
             Backlog_Tasks: total_backlog_tasks,
             Work_Due_Soon_Tasks: total_work_due_soon_tasks,
@@ -71,10 +76,58 @@ const init = async () => {
         
     });
     
-    app.get('/test', async (req,res) => {
+    app.get('/test/', async (req,res) => {
         const sql_script = fs.readFileSync('../sql_scripts/WorkOnTheHorizon.sql', 'utf8'); 
-        const users = await sequelize.query(sql_script); 
-        return res.json(users);
+        const workOnTheHorizon = await sequelize.query(sql_script); 
+        return res.json(workOnTheHorizon[0]);
+        
+    });
+    app.get('/BacklogTasks/:ID', async (req,res) => {
+        const { params } = req;
+        const sql_script = fs.readFileSync('../sql_scripts/BacklogTasks.sql', 'utf8'); 
+        const Report = await sequelize.query(sql_script); 
+        function filterbyID(report){
+            return report.writer_id === params.ID;
+          }
+        const filteredReport = Report[0].filter(filterbyID)
+          return res.json(filteredReport);
+        
+    });
+
+    app.get('/WorkDueSoonTasks/:ID', async (req,res) => {
+        const { params } = req;
+        const sql_script = fs.readFileSync('../sql_scripts/WorkDueSoonTasks.sql', 'utf8'); 
+        const Report = await sequelize.query(sql_script); 
+        function filterbyID(report){
+            return report.writer_id === params.ID;
+          }
+        const filteredReport = Report[0].filter(filterbyID)
+          return res.json(filteredReport);
+        
+    });
+
+    app.get('/ReadyTasks/:ID', async (req,res) => {
+        const { params } = req;
+        const sql_script = fs.readFileSync('../sql_scripts/ReadyTasks.sql', 'utf8'); 
+        const Report = await sequelize.query(sql_script); 
+        function filterbyID(report){
+            return report.writer_id === params.ID;
+          }
+        const filteredReport = Report[0].filter(filterbyID)
+          return res.json(filteredReport);
+        
+    });
+
+
+    app.get('/WorkOnTheHorizon/:ID', async (req,res) => {
+        const { params } = req;
+        const sql_script = fs.readFileSync('../sql_scripts/WorkOnTheHorizon.sql', 'utf8'); 
+        const Report = await sequelize.query(sql_script); 
+        function filterbyID(report){
+            return report.writer_id === params.ID;
+          }
+        const filteredReport = Report[0].filter(filterbyID)
+          return res.json(filteredReport);
         
     });
 
