@@ -16,21 +16,25 @@ export default function Home({ userdata }) {
   const [tableData , setTableData] = useState([]);
   const getCardData = async (e) => {
         setCurrentUser(e.currentTarget.dataset.user)
-        const res = await fetch ('http://localhost:5000/techwriter/' + e.currentTarget.dataset.user)
+        const res = await fetch ('http://localhost:8000/techwriter/' + e.currentTarget.dataset.user)
         const userReportData = await res.json()
         setDataCardStatus(true);
         setReports(userReportData);
-    }
-    useEffect(()=> {
-      setCurrentUser(currentUser);
-    },[currentUser]);
+  }
+  useEffect(()=> {
+    setCurrentUser(currentUser);
+  },[currentUser]);
 
   const getTableData = async (e) => {
-    const res = await fetch ('http://localhost:5000/' + e.currentTarget.dataset.reporturl + '/' + currentUser);
+    const res = await fetch ('http://localhost:8000/' + e.currentTarget.dataset.reporturl + '/' + currentUser);
     const userTableData = await res.json()
     setTableStatus(true);
     setTableData(userTableData);
 }
+
+  useEffect(()=> {
+    setTableData(tableData);
+  },[tableData]);
 
    return (
       <div>
@@ -65,7 +69,7 @@ export default function Home({ userdata }) {
 }*/
 
 export async function getServerSideProps() {
-  const res = await fetch ('http://localhost:5000/techwriters')
+  const res = await fetch ('http://localhost:8000/techwriters')
   const userdata = await res.json()
 
   return {props:{userdata}}
